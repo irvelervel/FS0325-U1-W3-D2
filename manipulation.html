@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM Traversing</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f5f5f5;
+      }
+
+      header {
+        text-align: center;
+        padding: 40px 0;
+        background-color: white;
+        border-radius: 8px;
+        margin-bottom: 30px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+        color: #2c3e50;
+        margin-bottom: 10px;
+      }
+
+      nav {
+        margin: 20px 0;
+      }
+
+      nav a {
+        color: #3498db;
+        text-decoration: none;
+        margin: 0 15px;
+        font-weight: 500;
+        transition: color 0.3s ease;
+      }
+
+      .container {
+        width: 100%;
+        overflow: hidden;
+      }
+
+      main {
+        width: 70%;
+        float: left;
+        padding-right: 30px;
+      }
+
+      .sidebar {
+        width: 30%;
+        float: left;
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .sidebar h3 {
+        color: #2c3e50;
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #f0f0f0;
+      }
+
+      .sidebar ul {
+        list-style: none;
+      }
+
+      .sidebar ul li {
+        margin-bottom: 10px;
+      }
+
+      .sidebar ul li a {
+        color: #3498db;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .sidebar ul li a:hover {
+        color: #2980b9;
+      }
+
+      .article {
+        background-color: white;
+        padding: 30px;
+        margin-bottom: 30px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .article h2 {
+        color: #2c3e50;
+        margin-bottom: 15px;
+      }
+
+      .article-meta {
+        color: #7f8c8d;
+        font-size: 0.9em;
+        margin-bottom: 20px;
+      }
+
+      .article p {
+        margin-bottom: 15px;
+      }
+
+      .read-more {
+        display: inline-block;
+        color: #3498db;
+        text-decoration: none;
+        font-weight: 500;
+        margin-top: 10px;
+      }
+
+      .read-more:hover {
+        text-decoration: underline;
+      }
+
+      footer {
+        clear: both;
+        text-align: center;
+        padding: 20px;
+        color: #7f8c8d;
+        margin-top: 40px;
+      }
+
+      .underline {
+        text-decoration: underline; /* SOTTOLINEATURA */
+      }
+
+      .w-100 {
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1 id="main-title">...loading</h1>
+      <nav>
+        <a href="#home">Home</a>
+        <a href="#about">Chi Sono</a>
+        <a href="#archive">Archivio</a>
+        <a href="#contact">Contatti</a>
+      </nav>
+    </header>
+
+    <div class="container">
+      <main>
+        <article class="article">
+          <h2>Il mio primo articolo</h2>
+          <div class="article-meta">
+            Pubblicato il 16 Febbraio 2025 da Mario Rossi
+          </div>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat.
+          </p>
+          <a href="#" class="read-more">Continua a leggere →</a>
+        </article>
+
+        <article class="article">
+          <h2>Il mio secondo articolo</h2>
+          <div class="article-meta">
+            Pubblicato il 17 Febbraio 2025 da Mario Rossi
+          </div>
+          <p>
+            Duis aute irure dolor in reprehenderit in voluptate velit esse
+            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+            cupidatat non proident, sunt in culpa qui officia deserunt mollit
+            anim id est laborum.
+          </p>
+          <a href="#" class="read-more">Continua a leggere →</a>
+        </article>
+
+        <article class="article">
+          <h2>Un altro articolo interessante</h2>
+          <div class="article-meta">
+            Pubblicato il 18 Febbraio 2025 da Mario Rossi
+          </div>
+          <p>
+            Duis aute irure dolor in reprehenderit in voluptate velit esse
+            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+            cupidatat non proident, sunt in culpa qui officia deserunt mollit
+            anim id est laborum.
+          </p>
+          <a href="#" class="read-more">Continua a leggere →</a>
+        </article>
+      </main>
+
+      <aside id="archive" class="sidebar">
+        <h3 id="h3-title" onclick="addALink()">Archivio</h3>
+        <img
+          src="https://placedog.net/400/400"
+          class="w-100"
+          onclick="makeItACatToggle()"
+        />
+        <ul>
+          <li><a href="#gennaio-2025">Gennaio 2025</a></li>
+          <li><a href="#dicembre-2024">Dicembre 2024</a></li>
+          <li><a href="#novembre-2024">Novembre 2024</a></li>
+          <li><a href="#ottobre-2024">Ottobre 2024</a></li>
+          <li><a href="#settembre-2024">Settembre 2024</a></li>
+          <li><a href="#agosto-2024">Agosto 2024</a></li>
+          <li><a href="#luglio-2024">Luglio 2024</a></li>
+          <li><a href="#giugno-2024">Giugno 2024</a></li>
+        </ul>
+      </aside>
+    </div>
+
+    <footer>
+      <p>© 2025 EPIBlog. Tutti i diritti riservati.</p>
+    </footer>
+    <script src="./js/manipulation.js"></script>
+  </body>
+</html>

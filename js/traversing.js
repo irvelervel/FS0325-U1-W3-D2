@@ -58,3 +58,56 @@ const allMains = document.getElementsByTagName('main')
 console.log('tutti i main', allMains)
 // allMains è un ARRAY di tutti i <main> (cioè un array con un elemento!)
 // allMains[0] è il primo e unico <main> trovato
+
+// qual ora i metodi visti fin adesso NON riescano a recuperare in modo preciso
+// i riferimenti di cui siete in cerca... (magari dovete trovare l'h3 dentro la seconda
+// section)
+
+// se avete in mente un valido selettore CSS per recuperare l'elemento che vi serve,
+// potete usare querySelector e querySelectorAll per trovarlo!
+
+// d) querySelector
+// querySelector recupera un riferimento in JS a UN elemento tramite il selettore
+// che avreste utilizzato per selezionarlo in CSS
+const h3InsideSecondSection = document.querySelector('section+section h3')
+console.log(h3InsideSecondSection)
+
+const specialLiInsideUl = document.querySelector('ul > li > a.special')
+console.log(specialLiInsideUl)
+
+// querySelector è un metodo PIÙ PESANTE da gestire per il browser: usatelo con
+// parsimonia, cercando di preferire quelli precedenti se possibile!
+
+// in caso di multipli match con il selettore CSS fornito, querySelector tornerà
+// sempre e solo al massimo UN riferimento: quello del primo elemento con il match
+
+// e) querySelectorAll
+// querySelectorAll funziona COME querySelector, ma serve per recuperare MULTIPLI
+// riferimenti in caso di selettori CSS che colpirebbero diversi tag.
+const allSpecialAnchors = document.querySelectorAll('ul > li > a.special')
+console.log(allSpecialAnchors)
+// i risultati in questo caso vengono restituiti in una "NodeList", una struttura
+// di nuovo simile ad un array ma senza molti dei metodi che abbiamo visto ieri:
+// in particolare, sulle NodeList si può iterare facilmente con forEach (ma non
+// con map, filter, reduce, etc.)
+// nota di Stefano: se fate un "for", non sbagliate mai!
+// per trasformarli in veri e propri array potete usare: Array.from(allSpecialAnchors)
+
+// NB: ogni riferimento a elementi HTML che recuperate possiede TANTE proprietà
+allSpecialAnchors[0].parentElement // OGNI elemento ha anche un riferimento
+// a SUO PADRE DIRETTO!
+console.log('il padre del primo special', allSpecialAnchors[0].parentElement)
+console.log(
+  'il nonno del primo special',
+  allSpecialAnchors[0].parentElement.parentElement
+)
+
+// ogni elemento HTML ha anche i riferimenti ai suoi FIGLI DIRETTI
+console.log(
+  'figli diretti di main',
+  document.getElementsByTagName('main')[0].children
+)
+
+// abbiamo TANTI metodi per recuperare i riferimenti che ci interessano di TUTTI
+// i possibili contenuti del nostro HTML.
+// e mo che ci facciamo? -> proseguiamo su manipulation.js
