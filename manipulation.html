@@ -142,6 +142,10 @@
       .w-100 {
         width: 100%;
       }
+
+      .yellow {
+        color: yellow;
+      }
     </style>
   </head>
   <body>
@@ -201,11 +205,12 @@
       </main>
 
       <aside id="archive" class="sidebar">
-        <h3 id="h3-title" onclick="addALink()">Archivio</h3>
+        <button onclick="makeArchiveRed()">ROSSO</button>
+        <h3>Archivio</h3>
         <img
           src="https://placedog.net/400/400"
           class="w-100"
-          onclick="makeItACatToggle()"
+          onclick="makeItABear()"
         />
         <ul>
           <li><a href="#gennaio-2025">Gennaio 2025</a></li>
