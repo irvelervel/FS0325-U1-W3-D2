@@ -65,3 +65,30 @@ const makeItYellow = function () {
 }
 
 makeItYellow()
+
+// - creiamo da zero un nuovo link per la sezione Archivio
+const createNewLinks = function () {
+  const ul = document.getElementsByTagName('ul')[0]
+  // metodo a): aggiungo in coda all'HTML di questa ul un nuovo <li>
+  ul.innerHTML += '<li><a href="#maggio-2024">Maggio 2024</a></li>'
+  // metodo b): creo un'àncora, creo un li, appendo l'ancora dentro li, appendo
+  // l'li dentro la ul
+  const newA = document.createElement('a') // <a></a>
+  newA.innerText = 'Aprile 2024' // <a>Aprile 2024</a>
+  newA.setAttribute('href', '#aprile-2024') // <a href="#aprile-2024">Aprile 2024</a>
+  // l'elemento ora esiste "in memoria", ma fisicamente non è stato ancora "appeso" da
+  // nessuna parte nel DOM. Quando si crea un elemento a mano con "createElement", è
+  // necessario successivamente inserirlo nella pagina, con un metodo che si chiama
+  // "appendChild()"
+  const newLi = document.createElement('li') // <li></li>
+  newLi.appendChild(newA) // <li><a href="#aprile-2024">Aprile 2024</a></li>
+  ul.appendChild(newLi)
+  // ho creato un'àncora vuota, vi ho messo il contenuto, vi ho settato l'attributo
+  // href, ho creato un li vuoto, ho appeso l'àncora all'li vuoto, ho appeso li riempito
+  // alla ul
+  //
+  // rimuoviamo il bottone per aggiungere i link a fine operazione
+  const buttonToRemove = document.getElementsByClassName('to-remove')[0]
+  console.log(buttonToRemove)
+  buttonToRemove.remove()
+}
